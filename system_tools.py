@@ -1,5 +1,7 @@
 #Author: Eshwar RA
 #mail  : eshwarra5@gmail.com
+#Description:
+#This tool can be used in linux servers if you dont have any knowledge of the linux command line. Please comment/contribute for more tools.
 import subprocess
 import time
 
