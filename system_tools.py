@@ -15,6 +15,7 @@ print("3] Run code from a text file")
 print("4] Apache2 (Web Server)")
 print("5] Shutdown/restart/Switch_user")
 print("6] update & upgrade system")
+print("7] apt store - install software")
 op1 = input("Enter the number given to the tool that you want to use > ")
 #-------------------------------------------------------------------------------
 #mac address mac_changer
@@ -25,6 +26,8 @@ if(op1 == '1'):
     print("3] eth0(ethernet)")
     print("4] other")
     interface_number = input("mac_changer > ")
+
+
     if(interface_number == '4'):
         interface = input("Enter the interface- ")
 
@@ -171,7 +174,7 @@ if (op1 == '4'):
         print("'sudo service apache2 start'")
         print("View your web server by typing localhost in the URL section of your web browser")
         print("If it did not work, then run 'sudo service apache2 start'")
-        
+
     elif (apache2_option_1 == '4'):
         print("Stopping apache2...")
         subprocess.call(['sudo','service','apache2','stop'])
@@ -230,18 +233,72 @@ if (op1 == '6'):
 
     if (update_option == '1'):
         subprocess.call(['sudo','apt','update'])
-        print("If it did not work, run 'sudo apt update' on the command line")
+        print("If it did not work, run 'sudo apt update' on the command-line")
 
     elif (update_option == '2'):
         subprocess.call(['sudo','apt','upgrade'])
-        print("If it did not work, run 'sudo apt upgrade' on the command line")
+        print("If it did not work, run 'sudo apt upgrade' on the command-line")
 
     elif (update_option == '3'):
         subprocess.call(['sudo','apt','full-upgrade'])
-        print("If it did not work, run 'sudo apt full-upgrade' on the command line")\
+        print("If it did not work, run 'sudo apt full-upgrade' on the command-line")
 
     else:
         print("Invalid Input")
         break
 
 #-------------------------------------------------------------------------------
+#install software from the apt store
+if (op1 == '7'):
+    print("Choose an option-")
+    print("1] search software")
+    print("2] Install software ")
+    install_option = input("apt_store > ")
+
+    if (install_option == '1'):
+        play = True
+        while (play == True):
+            print("Enter a keyword to search for software")
+            search = input("search_software > ")
+            print("copy the name of the software that you find in order to install it")
+            time.sleep(1)
+            subprocess.call(['sudo','apt-cache','search',search])
+            print("If you got no output, run 'sudo apt-cache search <keyword> in the command-line'")
+            print("Enter 'n' to search again or 'y' to exit or 'i' to install software")
+            yes_or_no_for_exiting_apt_search = input("exit? > ")
+
+            if (yes_or_no_for_exiting_apt_search == 'y'):
+                play = False
+
+            elif (yes_or_no_for_exiting_apt_search == 'n'):
+                play = True
+
+            elif (yes_or_no_for_exiting_apt_search == 'i'):
+                software_name = input("Enter the ame of the software that you want to install - ")
+                subprocess.call(['sudo','apt','install',software_name])
+                print("use 'sudo apt install <name_of_software> if it didn't work")
+            else:
+                print("Invalid input")
+                play = True
+
+   elif (install_option == '2'):
+       a = True
+       while (a = True):
+           software_name = input("Enter the ame of the software that you want to install - ")
+           subprocess.call(['sudo','apt','install',software_name])
+           print("use 'sudo apt install <name_of_software> if it didn't work")
+           time.sleep(1)
+           print("Enter 'y' to try again and 'n' to exit")
+           try_again = input("try_again? > ")
+
+           if (try_again == 'y'):
+               a = True
+
+           elif (try_again == 'n'):
+               a = False
+
+           else:
+               print("Invalid Input")
+               a = True
+
+#-------------------------------------------------------------------------------                       
