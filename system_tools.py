@@ -14,6 +14,7 @@ print("2] Tor start")
 print("3] Run code from a text file")
 print("4] Apache2 (Web Server)")
 print("5] Shutdown/restart/Switch_user")
+print("6] update & upgrade system")
 op1 = input("Enter the number given to the tool that you want to use > ")
 #-------------------------------------------------------------------------------
 #mac address mac_changer
@@ -48,6 +49,8 @@ if(op1 == '1'):
     print("'sudo ifconfig <interface> down'")
     print("'sudo ifconfig <interface> hw ether <mac_address>'")
     print("'sudo ifconfig <interface> up'")
+    time.sleep(1)
+    print(" Use ifconfig (under ether of your interface) to check if your mac address was changed")
 #-------------------------------------------------------------------------------
 #tor start/stop/restart
 if(op1 == '2'):
@@ -125,7 +128,7 @@ if (op1 == '3'):
     else:
         print("Invalid Input")
         break
-                
+
 #-------------------------------------------------------------------------------
 #Apache2 start/stop/Restart
 if (op1 == '4'):
@@ -167,13 +170,15 @@ if (op1 == '4'):
         print("If it did not work, run the following in the linux terminal-")
         print("'sudo service apache2 start'")
         print("View your web server by typing localhost in the URL section of your web browser")
-
+        print("If it did not work, then run 'sudo service apache2 start'")
+        
     elif (apache2_option_1 == '4'):
         print("Stopping apache2...")
         subprocess.call(['sudo','service','apache2','stop'])
         print("If it did not work, run the following in the linux terminal-")
         print("'sudo service apache2 stop'")
         print("Check if it worked by typing localhost in the URL section of your web browser")
+        print("If it did not work, then run 'sudo service apache2 stop'")
 
     elif (apache2_option_1 == '5'):
         print("Restarting apache2...")
@@ -181,6 +186,7 @@ if (op1 == '4'):
         print("If it did not work, run the following in the linux terminal-")
         print("'sudo service apache2 restart'")
         print("Check if it worked by typing localhost in the URL section of your web browser")
+        print("If it did not work, then run 'sudo service apache2 restart'")
 
     else:
         print("Invalid Input")
@@ -207,6 +213,32 @@ if (op1 == '5'):
         user_name = input("Enter the name of the user-")
         subprocess.call(['su',user_name])
         print("use 'su <user_name>' if it did not work")
+
+    else:
+        print("Invalid Input")
+        break
+
+#-------------------------------------------------------------------------------
+#update & upgrade system
+if (op1 == '6'):
+    print("Choose an option-")
+    print("1] update            - updates the list of available packages and their versions")
+    print("2] upgrade           - installs newer versions of the packages you have")
+    print("3] dist/full-upgrade - will upgrade to a new kernel and also install newer")
+    print("                       versions of the packages you have")
+    update_option = input("update/upgrade > ")
+
+    if (update_option == '1'):
+        subprocess.call(['sudo','apt','update'])
+        print("If it did not work, run 'sudo apt update' on the command line")
+
+    elif (update_option == '2'):
+        subprocess.call(['sudo','apt','upgrade'])
+        print("If it did not work, run 'sudo apt upgrade' on the command line")
+
+    elif (update_option == '3'):
+        subprocess.call(['sudo','apt','full-upgrade'])
+        print("If it did not work, run 'sudo apt full-upgrade' on the command line")\
 
     else:
         print("Invalid Input")
