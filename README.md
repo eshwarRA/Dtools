@@ -1,2 +1,2 @@
-# essential-tools-for-new-linux-debian-users
+# Dtools
 tool kit of essential tools for new linux users
